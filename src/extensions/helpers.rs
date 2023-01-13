@@ -41,6 +41,6 @@ fn path_exists<P: ?Sized + AsRef<Path>>(path: &P) -> bool {
 
 /// Writes a file to a location.
 pub fn write_file<P: AsRef<Path>>(home: &PathBuf, path: P) -> Result<PathBuf> {
-    std::fs::create_dir_all(home.join(&path))?;
+    std::fs::File::create(home.join(&path))?;
     Ok(PathBuf::from(home.join(path.as_ref())))
 }
